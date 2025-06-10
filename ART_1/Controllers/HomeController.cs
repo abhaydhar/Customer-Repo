@@ -50,6 +50,9 @@ namespace ART.Controllers
 
             //Check for non-Hexa users
             var UserID = GetUserHexaorNonHexa(Details["inputEmail"].ToString());
+            AdoNetExampleForProducts dbCall = new AdoNetExampleForProducts();
+            dbCall.CreateProduct("Marico", 10.0);
+
             //var UserID = Details["inputEmail"].ToString();
             //Check for non-Hexa users
 
@@ -279,6 +282,9 @@ namespace ART.Controllers
         public ActionResult success()
         {
             ViewBag.result = "Set Password Successful";
+            AdoNetExampleForProducts dbCall = new AdoNetExampleForProducts();
+            dbCall.ReadProducts();
+
             return View("Success");
         }
         /// <summary>
@@ -299,6 +305,8 @@ namespace ART.Controllers
 
             try
             {
+                 AdoNetExampleForProducts dbCall = new AdoNetExampleForProducts();
+                dbCall.UpdateProduct(10,100.0);
 
                 //DirectoryEntry directoryEntry = new DirectoryEntry("LDAP://OU=Users,OU=Campus,DC=pwtest1,DC=com", @"pwtest1\32918", "Wks@060s@");
                 DirectoryEntry directoryEntry = new DirectoryEntry(LdapPath, DomainName + "\\" + NetUsername, NetUserCred);
